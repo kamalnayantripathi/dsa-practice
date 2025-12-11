@@ -68,7 +68,7 @@ function ReverseArray(arr,m,n){
     arr[m] = arr[n];
     arr[n] = temp;
     m++; n--;
-    ReverseArray(arr,m,n)
+    return ReverseArray(arr,m,n)
 }
 // console.log(ReverseArray(arr, 0, arr.length-1))
 
