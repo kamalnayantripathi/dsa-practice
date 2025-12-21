@@ -4,24 +4,31 @@
 // You must implement a solution with a linear runtime complexity and use only constant extra space.
 
 var singleNumber = function(nums) {
-    // Brute force, time complexity: O(n*n) and space complexity: O(n)
-    let checked=[];
-    for(let i=0;i<nums.length;i++){
-        let found=false;
-        if(checked.includes(nums[i])) continue;
-        for(let j=i+1;j<nums.length;j++){
-            if(nums[i] === nums[j]){
-                checked.push(nums[j]) 
-                found=true;
-                break;
-            }
-        }
-        if(!found) return nums[i];
+    // Brute force, time complexity(TC): O(n*n) and space complexity(SC): O(n)
+    // let checked=[];
+    // for(let i=0;i<nums.length;i++){
+    //     let found=false;
+    //     if(checked.includes(nums[i])) continue;
+    //     for(let j=i+1;j<nums.length;j++){
+    //         if(nums[i] === nums[j]){
+    //             checked.push(nums[j]) 
+    //             found=true;
+    //             break;
+    //         }
+    //     }
+    //     if(!found) return nums[i];
+    // }
+
+    // Optimal solution using XOR, TC: O(n), SC: O(1)
+    let xor=nums[0];
+    for(let i=1; i<nums.length; i++){
+        xor ^= nums[i];
     }
+    return xor;
 };
 
 // const nums = [2,2,1]
-const nums = [4,1,2,1,2]
-// const nums = [1]
+// const nums = [4,1,2,1,2]
+const nums = [1]
 
 console.log(singleNumber(nums))
