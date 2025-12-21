@@ -29,7 +29,8 @@ var rotate = function(nums, k) {
     // }
     // console.log(nums)
 
-    // Optimal solution: reverse first 0 to k-1, then k to n-1, and then 0 to n-1 elements. 
+    // Optimal solution: reverse first 0 to k-1, then k to n-1, and then 0 to n-1 elements.
+    // The space complexity here is O(1) but the time complexity ~ O(2n).
     let n=nums.length;
     k=k%n;
     reverseArray(nums,n-k,n-1)
