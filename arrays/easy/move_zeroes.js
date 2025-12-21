@@ -3,6 +3,7 @@
 // Note that you must do this in-place without making a copy of the array.
 
 var moveZeroes = function(nums) {
+    // two pointer approach
     let j=0,k=1;
     while(j<nums.length){
         if(nums[j]!==0){
