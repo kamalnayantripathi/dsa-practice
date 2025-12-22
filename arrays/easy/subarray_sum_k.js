@@ -24,14 +24,19 @@ var subarraySum = function(nums, k) {
     // }
     // return count;
 
-    // Optimal solution
-    let sumArr = new Map();
+    // Optimal solution, you can use objects or hash maps. TC: O(n), SC: O(n)
+    // let sumArr = new Map();    // using hash maps
+    let sumArr = {}     // using objects
     let sum=0, count=0;
     for(let i=0; i<nums.length; i++){
         sum+=nums[i]
         if(sum===k) count++;
-        if(sumArr.get(sum-k)!==undefined) count=count+sumArr.get(sum-k);
-        sumArr.set(sum, (sumArr.get(sum) || 0) + 1);
+        // using hashmaps
+        // if(sumArr.get(sum-k)!==undefined) count=count+sumArr.get(sum-k);
+        // sumArr.set(sum, (sumArr.get(sum) || 0) + 1);
+        // using objects
+        if(sumArr[sum-k]!==undefined) count=count+sumArr[sum-k];
+        sumArr[sum] = (sumArr[sum] || 0) + 1;
     }
     console.log(sumArr)
     return count;
