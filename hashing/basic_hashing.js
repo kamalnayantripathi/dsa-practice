@@ -14,7 +14,7 @@ console.log(freq)
 // 	      5 occurs 2 times in the array
 //               15 occurs 1 time in the array
 
-// Problem Statement: Problem Statement: Given an array of size N. Find the highest and lowest frequency element.
+// Problem Statement: Given an array of size N. Find the highest and lowest frequency element.
 
 // supposing the above array is the given array
 let result={};
