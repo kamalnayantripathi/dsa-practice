@@ -24,7 +24,7 @@ var subarraySum = function(nums, k) {
     // }
     // return count;
 
-    // Optimal solution, you can use objects or hash maps. TC: O(n), SC: O(n)
+    // Optimal solution, we can use objects or hash maps. TC: O(n), SC: O(n), worst case TC maybe O(n*n)
     // let sumArr = new Map();    // using hash maps
     let sumArr = {}     // using objects
     let sum=0, count=0;
