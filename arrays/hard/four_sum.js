@@ -33,20 +33,42 @@ var fourSum = function(nums, target) {
     // return ans
 
     // Optimal solution: TC: O(n^3), SC: O(n)
+    // nums.sort((a,b) => a-b)
+    // const map = new Map(), ans=[]
+    // for(let i=0; i<nums.length; i++){ 
+    //     map.set(nums[i],i)
+    // }
+    // console.log(map)
+    // for(let i=0; i<nums.length; i++){
+    //     for(let j=i+1; j<nums.length; j++){
+    //         for(let k=j+1; k<nums.length; k++){
+    //             const val=target-(nums[i]+nums[j]+nums[k])
+    //             const l = map.get(val)
+    //             if(l===undefined || k>=l) continue;
+    //             ans.push([nums[i],nums[j],nums[k],val])
+    //             while(nums[k+1]===nums[k]) k++
+    //         }
+    //         while(nums[j+1]===nums[j]) j++
+    //     }
+    //     while(nums[i+1]===nums[i]) i++
+    // }
+    // return ans
+    // Super Optimal solution: TC: O(n^3), SC: O(1)
     nums.sort((a,b) => a-b)
-    const map = new Map(), ans=[]
-    for(let i=0; i<nums.length; i++){ 
-        map.set(nums[i],i)
-    }
-    console.log(map)
+    const ans=[]
     for(let i=0; i<nums.length; i++){
         for(let j=i+1; j<nums.length; j++){
-            for(let k=j+1; k<nums.length; k++){
-                const val=target-(nums[i]+nums[j]+nums[k])
-                const l = map.get(val)
-                if(l===undefined || k>=l) continue;
-                ans.push([nums[i],nums[j],nums[k],val])
-                while(nums[k+1]===nums[k]) k++
+            let k=j+1,l=nums.length-1;
+            while(k<l){
+                const sum=nums[i]+nums[j]+nums[k]+nums[l]
+                if(sum<target) k++
+                else if(sum>target) l--
+                else{
+                    ans.push([nums[i],nums[j],nums[k],nums[l]])
+                    k++;l--;
+                    while(k<l && nums[k-1]===nums[k]) k++
+                    while(k<l && nums[l+1]===nums[l]) l--
+                }
             }
             while(nums[j+1]===nums[j]) j++
         }
@@ -65,11 +87,11 @@ var fourSum = function(nums, target) {
 // nums = [1, 2, 3, 4, 5], target = 10 // Expected: [[1, 2, 3, 4]]
 // nums = [1, 2, 3], target = 6// Expected: []
 // nums = [1, 0, -1, 0, -2, 2, 2], target = 2 // Expected: [  [-2, 0, 2, 2], [-1, 0, 1, 2] ]
-nums = [-3, -1, 0, 2, 4, 5], target = 2 // Expected: [[-3, -1, 2, 4]]
+// nums = [-3, -1, 0, 2, 4, 5], target = 2 // Expected: [[-3, -1, 2, 4]]
 // nums = [1000000000, 1000000000, 1000000000, 1000000000] ,target = 4000000000
 // Expected: [[1000000000, 1000000000, 1000000000, 1000000000]]
 
-// nums = [-1000000000, -1000000000, 0, 0, 1000000000, 1000000000] ,target = 0
+nums = [-1000000000, -1000000000, 0, 0, 1000000000, 1000000000] ,target = 0
 // Expected: [[-1000000000, -1000000000, 1000000000, 1000000000],[-1000000000, 0, 0, 1000000000]]
 
 console.log(fourSum(nums,target))
